@@ -1,9 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {PokemonService} from '../../data/services/pokemon.service';
 import {Router, RouterLink} from '@angular/router';
- // type PokemonItemDetails={
- //   name: string,
- // }
+
 @Component({
   selector: 'app-pokemon',
   standalone: true,
@@ -20,7 +18,6 @@ export class PokemonComponent {
   limit = 8;
   offset = 0;
   loading = false;
-
 
 
   ngOnInit() {
