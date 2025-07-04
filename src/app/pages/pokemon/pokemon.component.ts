@@ -1,18 +1,31 @@
 import {Component, inject} from '@angular/core';
 import {PokemonService} from '../../data/services/pokemon.service';
-import {Router, RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
+
+
+type PokemonData = {
+  id: number;
+  name: string;
+  type: string;
+  height: number;
+  order:number;
+  stats:{base_stat:number,}[];
+}
+
 
 @Component({
   selector: 'app-pokemon',
   standalone: true,
   imports: [
-    RouterLink
+
   ],
   templateUrl: './pokemon.component.html',
   styleUrl: './pokemon.component.scss'
 })
+
 export class PokemonComponent {
   pokemonService = inject(PokemonService);
+  router = inject(Router);
   pokemon:any[] = [];
 
   limit = 8;
@@ -21,10 +34,11 @@ export class PokemonComponent {
 
 
   ngOnInit() {
-    this.loadPokemons();
+    this.loadPokemon();
+    console.log(this.pokemon)
   }
 
-  loadPokemons() {
+  loadPokemon() {
     if (this.loading) return;
 
     this.loading = true;
@@ -42,12 +56,11 @@ export class PokemonComponent {
       this.offset += this.limit;
       this.loading = false;
     });
+
   }
 
-  constructor(private router: Router) {}
-
   morePokemon(){
-    this.router.navigate(['/pokemon-detail',[]]);
+    this.router.navigate(['/pokemon-detail', []]).then();
   }
 
 
