@@ -1,24 +1,14 @@
 import {Component, inject} from '@angular/core';
 import {PokemonService} from '../../data/services/pokemon.service';
 import {Router} from '@angular/router';
-
-
-type PokemonData = {
-  id: number;
-  name: string;
-  type: string;
-  height: number;
-  order:number;
-  stats:{base_stat:number,}[];
-}
+import {PokemonData} from '../../types/root-type';
+import {PokemonListResponse} from '../../types/pokemonListResponse';
 
 
 @Component({
   selector: 'app-pokemon',
   standalone: true,
-  imports: [
-
-  ],
+  imports: [],
   templateUrl: './pokemon.component.html',
   styleUrl: './pokemon.component.scss'
 })
@@ -26,8 +16,7 @@ type PokemonData = {
 export class PokemonComponent {
   pokemonService = inject(PokemonService);
   router = inject(Router);
-  pokemon:any[] = [];
-
+  pokemonInfo:PokemonData[] = [];
   limit = 8;
   offset = 0;
   loading = false;
@@ -35,7 +24,6 @@ export class PokemonComponent {
 
   ngOnInit() {
     this.loadPokemon();
-    console.log(this.pokemon)
   }
 
   loadPokemon() {
@@ -43,13 +31,14 @@ export class PokemonComponent {
 
     this.loading = true;
 
-    this.pokemonService.getPokemon(this.limit, this.offset).subscribe((response: any) => {
+    // @ts-ignore
+    this.pokemonService.getPokemon(this.limit, this.offset).subscribe((response: PokemonListResponse) => {
       const results = response.results;
-
       results.forEach((result: { name: string; }) => {
-        this.pokemonService.getMorePokemon(result.name).subscribe((response: any) => {
-          this.pokemon.push(response);
-          this.pokemon.sort((a, b) => a.id - b.id);
+        // @ts-ignore
+        this.pokemonService.getMorePokemon(result.name).subscribe((response: PokemonData) => {
+          this.pokemonInfo.push(response);
+          this.pokemonInfo.sort((a, b) => a.id - b.id);
         });
       });
 
@@ -59,8 +48,8 @@ export class PokemonComponent {
 
   }
 
-  morePokemon(){
-    this.router.navigate(['/pokemon-detail', []]).then();
+  morePokemon(id:number){
+    this.router.navigate(['/pokemon-detail', id]).then();
   }
 
 

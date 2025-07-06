@@ -1,0 +1,31 @@
+.pokemon-detail__card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+.pokemon-detail__card img {
+  width: 100px;
+  height: 100px;
+}
+
+.pokemon-detail__card-info p {
+  margin: 4px 0;
+}
+
+.pokemon-detail__card-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.pokemon-detail__card-badge {
+  background-color: #34d399;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 14px;
+}
