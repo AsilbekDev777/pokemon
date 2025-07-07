@@ -8,6 +8,7 @@ import {PastAbility} from './interfaces/pastAbility/pastAbility';
 import {Species} from './interfaces/species/species';
 import {Sprites} from './interfaces/sprites/sprites';
 import {Type} from './interfaces/type/type';
+import {PokemonListResponse} from './pokemonListResponse';
 
 export type PokemonData = {
   abilities: Ability[]
@@ -30,4 +31,5 @@ export type PokemonData = {
   stats: Stat[]
   types: Type[]
   weight: number
+  // pokemon_list_response: PokemonListResponse
 }

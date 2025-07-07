@@ -1,6 +1,6 @@
 
-import {Component} from '@angular/core';
-import {PokemonData} from '../../types/root-type';
+import {Component, inject} from '@angular/core';
+import type {PokemonData} from '../../types/root-type';
 import {PokemonService} from '../../data/services/pokemon.service';
 import {ActivatedRoute} from '@angular/router';
 
@@ -13,21 +13,18 @@ import {ActivatedRoute} from '@angular/router';
   styleUrl: './pokemon-detail.component.scss'
 })
 export class PokemonDetailComponent {
-  // pokemonMoreInfo!: PokemonData;
-  //
-  // constructor(
-  //   private route: ActivatedRoute,
-  //   private pokemonService: PokemonService
-  // ) {}
-  //
-  // ngOnInit(): void {
-  //   const id = this.route.snapshot.paramMap.get('id');
-  //   if (id) {
-  //     this.pokemonService.getMorePokemon(id).subscribe((data) => {
-  //       // @ts-ignore
-  //       this.pokemonMoreInfo = data;
-  //     });
-  //   }
-  // }
+  route = inject(ActivatedRoute);
+  pokemonService = inject(PokemonService);
+  pokemonMoreInfo!: PokemonData;
+
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.pokemonService.getMorePokemon(id).subscribe((data) => {
+
+        this.pokemonMoreInfo = data;
+      });
+    }
+  }
 }
 

@@ -20,12 +20,12 @@
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 6px;
+
 }
 
-.pokemon-detail__card-badge {
-  background-color: #34d399;
+.pokemon-detail__card-badge{
+  background: lightgreen;
+  padding: 15px;
+  border-radius: 15px;
   color: white;
-  padding: 5px 10px;
-  border-radius: 999px;
-  font-size: 14px;
 }

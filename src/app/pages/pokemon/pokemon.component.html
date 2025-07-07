@@ -23,5 +23,5 @@
     </div>
   }
 </div>
-<button class="btn-more-item" (click)="loadPokemon()">Show more</button>
+<button class="btn-more-item" (click)="loadPokemon()" [disabled]="loading" > {{loading ? 'Loading...' : 'Show more'}}</button>
 <!--End Pokemon Grid-->

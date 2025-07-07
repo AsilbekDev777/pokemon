@@ -1,15 +1,20 @@
-<!--@if (pokemonMoreInfo) {-->
-<!--  <div class="pokemon-detail__card">-->
-<!--    <img [src]="pokemonMoreInfo.sprites.front_default" alt="avatar">-->
-<!--    <div class="pokemon-detail__card-info">-->
-<!--      <p>Id:{{pokemonMoreInfo.id}}</p>-->
-<!--      <p>Name: {{pokemonMoreInfo.name}}</p>-->
-<!--      <p>Height:{{pokemonMoreInfo.height}}</p>-->
-<!--      <p>Order:{{pokemonMoreInfo.order}}</p>-->
-<!--      <p>Stats: </p>-->
-<!--      @for (pokemonStats of pokemonMoreInfo.stats; track pokemonMoreInfo.stats){-->
-<!--        {{pokemonMoreInfo.stats}}-->
-<!--      }-->
-<!--    </div>-->
-<!--  </div>-->
-<!--}-->
+@if (pokemonMoreInfo) {
+  <div class="pokemon-detail__card">
+    <img [src]="pokemonMoreInfo.sprites.front_default" alt="avatar">
+    <div class="pokemon-detail__card-info">
+      <p><strong>Id:</strong>{{pokemonMoreInfo.id}}</p>
+      <p><strong> Name:</strong> {{pokemonMoreInfo.name}}</p>
+      <p><strong>Height:</strong>{{pokemonMoreInfo.height}}</p>
+      <p><strong>Order:</strong>{{pokemonMoreInfo.order}}</p>
+      <p><strong>Stats:</strong> </p>
+      <div class="pokemon-detail__card-stats">
+        @for (pokemonStats of pokemonMoreInfo.stats; track $index){
+          <span class="pokemon-detail__card-badge">
+            {{pokemonStats.stat.name}}:
+            {{pokemonStats.base_stat}}
+          </span>
+        }
+      </div>
+    </div>
+  </div>
+}
