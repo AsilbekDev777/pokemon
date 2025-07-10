@@ -1,6 +1,6 @@
 <!--Pokemon Grid-->
 <div class="pokemon-grid">
-  @for (pokemonBlock of pokemonInfo; track pokemonBlock.id){
+  @for (pokemonBlock of pokemons(); track pokemonBlock.id){
     <div class="box">
       <div class="card-header">
         <div class="id-badge">Id: {{pokemonBlock.id}}</div>
@@ -9,7 +9,7 @@
       <h3>{{pokemonBlock.name}}</h3>
       <div class="pokemon-content">
         <p>
-          <b>Type:</b> {{pokemonBlock.types[0].type.name}}
+<!--          <b>Type:</b> {{pokemonBlock.types?.[0].type.name}}-->
           <!--pokemon.types?.[0].type.name-->
         </p>
         <p>
@@ -23,5 +23,7 @@
     </div>
   }
 </div>
-<button class="btn-more-item" (click)="loadPokemon()" [disabled]="loading" > {{loading ? 'Loading...' : 'Show more'}}</button>
+<button class="btn-more-item" (click)="loadMorePokemon()" [disabled]="loading()">
+  {{ loading() ? 'Loading...' : 'Show more'  }}
+</button>
 <!--End Pokemon Grid-->

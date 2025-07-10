@@ -31,5 +31,4 @@ export type PokemonData = {
   stats: Stat[]
   types: Type[]
   weight: number
-  // pokemon_list_response: PokemonListResponse
 }
